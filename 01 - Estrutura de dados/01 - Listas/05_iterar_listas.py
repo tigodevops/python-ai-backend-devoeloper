@@ -1,4 +1,4 @@
-carros = ["gol", "HB20", "palio"]
+carros = str(input("inform seu carro : "))
 print(carros)
 
 ## Percorrendo a lista !##
