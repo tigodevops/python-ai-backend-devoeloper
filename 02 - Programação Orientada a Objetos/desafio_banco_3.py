@@ -1,6 +1,23 @@
 from abc import ABC, abstractclassmethod, abstractproperty
 from datetime import datetime
 
+import textwrap
+
+def menu(): 
+    menu = """
+
+    [1]\tDepositar
+    [2]\tSacar
+    [3]\tExtrato
+    [4]\tNovo usuário
+    [5]\tNova Conta
+    [6]\tListar conta
+    [0]\tSair
+     
+    => """
+
+    return input(textwrap.dedent(menu))
+
 class Cliente:
     def __init__(self, endereco):
         self.endereco = endereco
@@ -16,7 +33,7 @@ class PessoaFisica(Cliente):
     def __init__(self, nome, data_nascimento, cpf, endereco):
         super().__init__(endereco)
         self.nome = nome
-        self.data_nasciemtno = data_nascimento
+        self.data_nascimento = data_nascimento
         self.cpf = cpf
 
 class Conta:
@@ -136,3 +153,38 @@ class Deposito(Transacao):
         if sucesso_transacao:
             conta.historico.adiconar_transacao(self.valor)
 
+def main():
+    clientes = []
+    contas = []
+
+
+    while True:
+        opcao = menu()
+
+        if opcao == "1":
+            depositar(clientes)
+           
+        elif opcao == "2":
+            sacar(clientes)
+
+           
+        elif opcao == "3":
+           exibir_extrato(clientes)
+
+        elif opcao == "4":
+            criar_clientes(usuarios)
+
+        elif opcao == "5":
+            numero_conta = len(contas) + 1
+            criar_conta(numero_conta, clientes, contas)
+
+        elif opcao == "6":
+             listar_contas(contas)
+
+        elif opcao == "q":
+             break
+        
+        else:
+            print("\n@@@ Operção inválida! Por favor selecione novamente a opção desejada. @@@")
+
+main()
